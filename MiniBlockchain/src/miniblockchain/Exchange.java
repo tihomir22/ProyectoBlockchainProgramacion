@@ -32,37 +32,6 @@ public class Exchange {
 
     }
 
-    public ArrayList<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(ArrayList<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDomicilio() {
-        return domicilio;
-    }
-
-    public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
-    }
-
-    public double getPatrimonioNet() {
-        return patrimonioNet;
-    }
-
-    public void setPatrimonioNet(double patrimonioNet) {
-        this.patrimonioNet = patrimonioNet;
-    }
 
     public void mostrarExchange() {
         System.out.println("NOMBRE" + "\t" + "DOMICILIO" + "\t" + "PATRIMONIO" + "\t" + "NUM USUARIOS");
@@ -160,6 +129,37 @@ public class Exchange {
         }
 
         return false;
+    }
+     public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(ArrayList<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public double getPatrimonioNet() {
+        return patrimonioNet;
+    }
+
+    public void setPatrimonioNet(double patrimonioNet) {
+        this.patrimonioNet = patrimonioNet;
     }
 
 }

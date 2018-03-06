@@ -30,6 +30,31 @@ public class Transaccion {
 
     }
 
+    public boolean procesarTransaccion(Wallet origen, Wallet destino, Criptomonedas moneda, Double cantidad) {
+        //Codigo para restar al origen las monedas y comprobar que tenga fondos
+        for (int i = 0; i < origen.monedas.size(); i++) {
+            if (origen.monedas.get(i).getNombre().equalsIgnoreCase(moneda.getNombre())) {
+                if (origen.monedas.get(i).getCantidad() > cantidad) {
+                    origen.monedas.get(i).setCantidad(origen.monedas.get(i).getCantidad() - cantidad);
+                } else {
+                    System.out.println("No tiene fondos suficientes");
+                    return false;
+                }
+            }
+        }
+        //Codigo para sumar al destino las monedas y actualizar sus monedas
+        for (int j = 0; j < destino.monedas.size(); j++) {
+            if (destino.monedas.get(j).getNombre().equalsIgnoreCase(moneda.getNombre())) {
+                destino.monedas.get(j).setCantidad(destino.monedas.get(j).getCantidad() + cantidad);
+            }
+        }
+        origen.listaTransW.add(this);
+        origen.setBalanceDolares(origen.getBalanceDolares() - this.getImporteDolar());
+        destino.listaTransW.add(this);
+        destino.setBalanceDolares(destino.getBalanceDolares() + this.getImporteDolar());
+        return true;
+    }
+
     public Date getFecha() {
         return fecha;
     }
@@ -60,36 +85,6 @@ public class Transaccion {
 
     public void setEmisor(Wallet emisor) {
         this.emisor = emisor;
-    }
-
-    public boolean procesarTransaccion(Wallet origen, Wallet destino, Criptomonedas moneda, Double cantidad) {
-
-        //Codigo para restar al origen las monedas y comprobar que tenga fondos
-        for (int i = 0; i < origen.monedas.size(); i++) {
-            if (origen.monedas.get(i).getNombre().equalsIgnoreCase(moneda.getNombre())) {
-                if (origen.monedas.get(i).getCantidad() > cantidad) {
-                    origen.monedas.get(i).setCantidad(origen.monedas.get(i).getCantidad() - cantidad);
-                } else {
-                    System.out.println("No tiene fondos suficientes");
-                    return false;
-                }
-            }
-        }
-
-        //Codigo para sumar al destino las monedas y actualizar sus monedas
-        for (int j = 0; j < destino.monedas.size(); j++) {
-            if (destino.monedas.get(j).getNombre().equalsIgnoreCase(moneda.getNombre())) {
-                destino.monedas.get(j).setCantidad(destino.monedas.get(j).getCantidad() + cantidad);
-            }
-        }
-
-        origen.listaTransW.add(this);
-        origen.setBalanceDolares(origen.getBalanceDolares() - this.getImporteDolar());
-        
-        destino.listaTransW.add(this);
-        destino.setBalanceDolares(destino.getBalanceDolares() + this.getImporteDolar());
-
-        return true;
     }
 
 }
